@@ -1,38 +1,3 @@
-# YokelGraph
-An unintelligent header-only directed graph implementation that encodes user-defined data into edges.
-
-Given a graph such as :
-```
-  ┌─────────Alice────works-with──────► Bob
-  │           ┼
-knows      is-related-to
-  │           │
-  │           │
-  ▼           ▼
-Candice     Jeremy
-  ▲           ▲
-  │           │
-  └─is-wed-to─┘
-```
-
-## Purpose
-
-We may need to find the path from any node to any other given node. We may also need
-to store variable relations between two nodes. This can be data such as "is-a", "has-a", "knows", etc.
-
-In this graph implementation we find the shortest number of hops between two points (if a path exists),
-and can retrieve the user-encoded relations between them.
-
-### Note:
-
-Graph searching is not thread-safe. This was built to handle small -> medium-ish graphs.
-
-## Example usage
-
-The following example is in `example.cpp` and can be constructed with the command `make example`.
-
-```cpp
-
 #include "graph.hpp"
 #include <string>
 #include <iostream>
@@ -110,6 +75,4 @@ int main(void) {
 
   return 0;
 }
-
-```
 

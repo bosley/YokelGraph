@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+**/.DS_Store
+**/*.dSYM/
+**/build
+
 # Compiled Object files
 *.slo
 *.lo
