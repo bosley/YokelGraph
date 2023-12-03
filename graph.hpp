@@ -25,6 +25,7 @@
 #ifndef YOKEL_GRAPH_HPP
 #define YOKEL_GRAPH_HPP
 
+#include <cmath>
 #include <limits>
 #include <map>
 #include <stack>
