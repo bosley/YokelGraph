@@ -1,7 +1,7 @@
 # YokelGraph
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/bosley/YokelGraph/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/bosley/YokelGraph/tree/main)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <br>
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
 An unintelligent header-only directed graph implementation that encodes user-defined data into edges.
