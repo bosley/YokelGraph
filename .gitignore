@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+example
+graph_test
+graph_debug
+
 **/.DS_Store
 **/*.dSYM/
 **/build

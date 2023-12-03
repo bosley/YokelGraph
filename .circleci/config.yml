@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  build:
+    environment: 
+      NIBI_PATH: /tmp/nibi_path
+    docker:
+      - image: "cimg/base:2023.06-20.04"
+    steps:
+      - checkout
+      - run:
+          name: Update and uprade
+          command: 'sudo apt update && sudo apt upgrade'
+      - run:
+          name: Install tools and libs
+          command: 'sudo apt install -y git gcc-10 g++-10 libfmt-dev'
+      - run:
+          name: Build test
+          command: 'make test'
+      - run:
+          name: Build debug
+          command: 'make debug'
+      - run:
+          name: Build example
+          command: 'make example'
