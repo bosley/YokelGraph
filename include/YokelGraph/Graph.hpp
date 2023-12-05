@@ -28,6 +28,7 @@
 #include <cmath>
 #include <limits>
 #include <map>
+#include <optional>
 #include <stack>
 #include <vector>
 
