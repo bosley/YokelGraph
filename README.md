@@ -38,7 +38,7 @@ The following example is in `example.cpp` and can be constructed with the comman
 
 ```cpp
 
-#include "graph.hpp"
+#include "YokelGraph/Graph.hpp"
 #include <string>
 #include <iostream>
 
