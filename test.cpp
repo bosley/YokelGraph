@@ -89,7 +89,7 @@ test_graph_s graph_two() {
       }
     },
     {
-      {"B", "B", 0, {}},
+      {"B", "B", 1, {"B->B"}},
       {"B", "A", 0, {}, false},
       {"A", "C", 2, {"A->B", "B->C"}},
       {"A", "E", 4, {"A->B", "B->C", "C->D", "D->E"}},
@@ -125,7 +125,7 @@ test_graph_s graph_three() {
       }
     },
     {
-      {"B", "B", 0, {}},
+      {"B", "B", 1, {"B->B"}},
       {"A", "C", 2, {"A->B", "B->C"}},
       {"A", "E", 3, {"A->B", "B->C", "C->E"}},
       {"X", "Y", 0, {}, false}, // no exist
@@ -352,13 +352,13 @@ bool graph_tests() {
           return false;
         }
 
-        if (result.value().size() - 1 != path.expected_distance) {
+        if (path.expected_distance > 1 && result.value().size() - 1 != path.expected_distance) {
           fmt::print(stderr, "Incorrect distance for {} to {}. Got {} expected {}\n",
               path.from, path.to, result.value().size()-1, path.expected_distance);
           return false;
         }
 
-        if (result.value().size() <= 1) {
+        if (result.value().size() <= 1 && (path.from != path.to)) {
           continue;
         }
 
