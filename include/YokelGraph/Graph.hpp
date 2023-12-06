@@ -185,6 +185,11 @@ public:
       return std::nullopt;
     }
 
+    if (result.size() == 0 && (from == to)) {
+      auto& node = _node_storage[from];
+      result.push_back(&node);
+    }
+
     if (_cache_enabled) {
       _cache[merged_ids] = {result};
     }
@@ -195,14 +200,19 @@ public:
   //! \brief Given some result path from trace, load data from
   //!        all edges that were crossed
   std::optional<edge_list_t> load_edges(const node_list_t& path) {
-    if (path.size() < 2) { return std::nullopt; }
+    if (path.empty()) { return std::nullopt; }
     edge_list_t result;
+    if (path.size() == 1) {
+      auto* edge = get_edge(path[0]->data(), path[0]->data());
+      if (!edge) { return std::nullopt; }
+      result.push_back(edge);
+      return {result};
+    }
     result.reserve(path.size()-1);
     for(std::size_t i = 0; i < path.size()-1; i++) {
-      const std::size_t id = merge_ids(*(path[i]->data()), *(path[i+1]->data()));
-      const auto it = _edge_storage.find(id);
-      if (it == _edge_storage.end()) { return std::nullopt; }
-      result.push_back(&it->second);
+      auto* edge = get_edge(path[i]->data(), path[i+1]->data());
+      if (!edge) {return std::nullopt;}
+      result.push_back(edge);
     }
     return {result};
   }
@@ -254,6 +264,14 @@ private:
   inline node_s* load_node(const NODE_ID_TYPE& x) {
     const auto it = _node_storage.find(x);
     if (it == _node_storage.end()) { return nullptr; }
+    return &it->second;
+  } 
+
+  inline EDGE_DATA* get_edge(const NODE_ID_TYPE* from, const NODE_ID_TYPE* to) {
+    if (!from || !to) { return nullptr; }
+    const std::size_t id = merge_ids(*from, *to);
+    const auto it = _edge_storage.find(id);
+    if (it == _edge_storage.end()) { return nullptr; }
     return &it->second;
   }
 
